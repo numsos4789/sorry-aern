@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ง้อนะเอิร์นคนดี จากนั้มเอง 🥺💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* เมฆลอยตกแต่งฉากหลัง */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            animation: floatCloud linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+        @keyframes floatCloud {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(calc(100vw + 150px)); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(2, 132, 199, 0.15);
+            text-align: center;
+            width: 100%;
+            max-width: 360px;
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .mascot {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            color: #0369a1;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .message-box {
+            background: #f0f9ff;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px dashed #7dd3fc;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        p {
+            color: #334155;
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            min-height: 110px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.1s ease;
+        }
+        button:active {
+            transform: scale(0.96);
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
+        }
+
+        #noBtn {
+            background-color: #cbd5e1;
+            color: #475569;
+            position: relative;
+        }
+
+        /* หัวใจและดาวสีฟ้าลอย */
+        .bubble-effect {
+            position: absolute;
+            animation: floatUp 3.5s linear infinite;
+            z-index: 5;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.6);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- เมฆตกแต่งเบื้องหลัง -->
+    <div class="cloud" style="width: 100px; height: 35px; top: 10%; animation-duration: 18s; opacity: 0.5;"></div>
+    <div class="cloud" style="width: 140px; height: 45px; top: 40%; animation-duration: 25s; opacity: 0.4;"></div>
+    <div class="cloud" style="width: 80px; height: 30px; top: 75%; animation-duration: 15s; opacity: 0.6;"></div>
+
+    <div class="container" id="card">
+        <div class="mascot" id="mascot">🥺</div>
+        <h1>เอิร์นครับ... นั้มขอโทษนะ</h1>
+        <div class="message-box">
+            <p id="text">นั้มสำนึกผิดแล้วจริงๆ น้า 🙇‍♂️<br>อย่าโกรธคนน่ารักคนนี้เลยนะเอิร์น ดีกันน้า 💙</p>
+        </div>
+        <div class="btn-group" id="btnGroup">
+            <button id="yesBtn" onclick="acceptApology()">ดีกันก็ได้! 💙</button>
+            <button id="noBtn" ontouchstart="moveButtonMobile(event)" onclick="moveButtonMobile(event)">ยังโกรธอยู่! 😤</button>
+        </div>
+    </div>
+
+    <script>
+        // ข้อความง้อแบบสเต็ปน่ารักๆ
+        const messages = [
+            "นั้มรู้แล้วว่านั้มผิดจริง ๆ ง้อแล้วน้า 🥺",
+            "คืนดีกับนั้มเถอะนะ เอิร์นคนสวย/คนดีของนั้ม 💙",
+            "สัญญาว่าจะไม่ทำให้อิอ้วน/เอิร์นต้องงอนอีกแน้ววว",
+            "กดปุ่ม 'ดีกันก็ได้' เถอะน้า นั้มขอร้องล่ะ 🥹"
+        ];
+        let msgIndex = 0;
+
+        function acceptApology() {
+            document.getElementById('mascot').innerHTML = '🥰🎉';
+            document.getElementById('card').style.background = 'rgba(255, 255, 255, 0.95)';
+            document.getElementById('card').innerHTML = `
+                <div class="mascot">🥰</div>
+                <h1>เย้! คืนดีกันแล้วนะ 💙</h1>
+                <div class="message-box" style="border-color: #38bdf8; background: #e0f2fe;">
+                    <p style="color: #0369a1; font-weight: 600;">ขอบคุณนะเอิร์นคนดี! นั้มรักเอิร์นที่สุดในโลกเลย จะเป็นเด็กดีแน่นอนครับ! ✨</p>
+                </div>
+                <button id="yesBtn" onclick="location.reload()">รักนั้มเพิ่มอีกจึ๋งนึง 💙</button>
+            `;
+            createBlueCelebration();
+        }
+
+        // ปุ่มหนีสำหรับมือถือ (รองรับทั้งแตะจอและคลิก)
+        function moveButtonMobile(e) {
+            e.preventDefault();
+            const noBtn = document.getElementById('noBtn');
+            
+            // เปลี่ยนข้อความเรื่อยๆ ทุกครั้งที่พยายามกดปุ่มปฏิเสธ
+            if (msgIndex < messages.length) {
+                document.getElementById('text').innerHTML = messages[msgIndex];
+                msgIndex++;
+            }
+
+            // คำนวณตำแหน่งสุ่มให้อยู่ในหน้าจอมือถือ
+            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
+            const maxY = 120; // ขยับขึ้นลงในโซนปุ่ม
+            
+            const randomX = (Math.random() - 0.5) * maxX;
+            const randomY = (Math.random() - 0.5) * maxY;
+
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        // สร้างเอฟเฟกต์หัวใจสีฟ้าและดาวลอยตอนง้อสำเร็จ
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble-effect');
+            const icons = ['💙', '✨', '💧', '☁️', '🩵'];
+            bubble.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            bubble.style.left = Math.random() * 100 + 'vw';
+            bubble.style.bottom = '-30px';
+            bubble.style.fontSize = (Math.random() * 16 + 16) + 'px';
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 3500);
+        }
+
+        function createBlueCelebration() {
+            setInterval(createBubble, 200);
+        }
+    </script>
+</body>
+</html>
