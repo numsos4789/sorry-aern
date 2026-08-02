@@ -2,227 +2,675 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ง้อนะเอิร์นคนดี จากนั้มเอง 🥺💙</title>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #ff4b72;
+            --primary-gradient: linear-gradient(135deg, #ff4b72 0%, #ff758c 100%);
+            --secondary: #ff85a2;
+            --accent: #ffd1dc;
+            --bg-color: #fff4f6;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --text-dark: #2d3436;
+            --text-muted: #636e72;
+            --shadow-soft: 0 10px 30px rgba(255, 75, 114, 0.12);
+            --shadow-hover: 0 15px 35px rgba(255, 75, 114, 0.25);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Prompt', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
+
         body {
-            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            font-family: 'Prompt', 'Mitr', 'Sarabun', sans-serif;
+            background: linear-gradient(180deg, #fff0f3 0%, #ffe6ea 50%, #fff0f3 100%);
+            color: var(--text-dark);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
+            padding-bottom: 60px;
             position: relative;
-            padding: 20px;
         }
 
-        /* เมฆลอยตกแต่งฉากหลัง */
-        .cloud {
+        /* ---------------- Background Floating Hearts ---------------- */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
             position: absolute;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50px;
-            animation: floatCloud linear infinite;
+            font-size: 20px;
+            user-select: none;
+            animation: floatUp 7s linear infinite;
+            filter: drop-shadow(0 2px 5px rgba(255, 75, 114, 0.2));
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) scale(0.6) rotate(0deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ---------------- Container ---------------- */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 20px 16px;
+            position: relative;
             z-index: 1;
+        }
+
+        /* ---------------- Hero Section ---------------- */
+        .hero-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 35px;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,117,140,0.08) 0%, rgba(255,255,255,0) 70%);
             pointer-events: none;
         }
-        @keyframes floatCloud {
-            0% { transform: translateX(-150px); }
-            100% { transform: translateX(calc(100vw + 150px)); }
-        }
 
-        .container {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 30px 20px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(2, 132, 199, 0.15);
-            text-align: center;
-            width: 100%;
-            max-width: 360px;
+        .profile-wrapper {
             position: relative;
-            z-index: 10;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 25px;
         }
 
-        .mascot {
-            font-size: 60px;
-            margin-bottom: 10px;
-            animation: bounce 2s infinite;
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(255, 75, 114, 0.2);
+            transition: transform 0.4s ease;
         }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+
+        .profile-wrapper:hover .profile-img {
+            transform: scale(1.04) rotate(2deg);
+        }
+
+        .beating-heart-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: #ffffff;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            animation: pulseHeart 1.3s infinite ease-in-out;
+        }
+
+        @keyframes pulseHeart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
         }
 
         h1 {
-            color: #0369a1;
-            font-size: 22px;
-            margin-bottom: 10px;
-            font-weight: 700;
+            color: var(--primary);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
-        .message-box {
-            background: #f0f9ff;
-            border-radius: 20px;
-            padding: 15px;
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
             margin-bottom: 25px;
-            border: 1px dashed #7dd3fc;
-            min-height: 80px;
+            font-weight: 300;
+        }
+
+        /* ---------------- Counter Badge ---------------- */
+        .counter-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1.15rem;
+            font-weight: 500;
+            box-shadow: 0 6px 20px rgba(255, 75, 114, 0.35);
+            transition: transform 0.3s ease;
+        }
+
+        .counter-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .counter-badge span {
+            font-size: 1.4rem;
+            font-weight: 600;
+            background: #fff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ---------------- Section Titles ---------------- */
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin: 45px 0 25px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
         }
 
-        p {
-            color: #334155;
-            font-size: 15px;
-            line-height: 1.5;
-            font-weight: 400;
+        /* ---------------- Gallery Section (10 Images) ---------------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
         }
 
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .gallery-card {
             position: relative;
-            min-height: 110px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #ffffff;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #ffffff;
         }
 
-        button {
+        .gallery-card img {
             width: 100%;
-            padding: 14px;
-            font-size: 16px;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-tag {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 300;
+        }
+
+        /* ---------------- Music Player Box ---------------- */
+        .music-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 20px 25px;
+            margin-top: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-icon {
+            width: 48px;
+            height: 48px;
+            background: #ffe6ea;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .music-text h4 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .music-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .music-btn {
+            background: var(--primary-gradient);
+            color: white;
             border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 75, 114, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* ---------------- Interactive Secret Letter Box ---------------- */
+        .secret-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 35px 25px;
+            margin-top: 35px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-toggle-secret {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            font-weight: 500;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.1s ease;
-        }
-        button:active {
-            transform: scale(0.96);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 20px rgba(255, 75, 114, 0.35);
         }
 
-        #yesBtn {
-            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-            color: white;
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
+        .btn-toggle-secret:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(255, 75, 114, 0.45);
         }
 
-        #noBtn {
-            background-color: #cbd5e1;
-            color: #475569;
+        .secret-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, margin-top 0.4s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .secret-content.show {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 30px;
+        }
+
+        .letter-card {
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+            border-left: 5px solid var(--primary);
             position: relative;
         }
 
-        /* หัวใจและดาวสีฟ้าลอย */
-        .bubble-effect {
-            position: absolute;
-            animation: floatUp 3.5s linear infinite;
-            z-index: 5;
-            pointer-events: none;
+        .letter-card p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #444444;
+            margin-bottom: 15px;
         }
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0.6);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1.2);
+
+        .letter-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------------- Modal Lightbox (ดูรูปขยายใหญ่) ---------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        /* ---------------- Animations ---------------- */
+        @keyframes fadeInDown {
+            from {
                 opacity: 0;
+                transform: translateY(-25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* ---------------- Responsive ---------------- */
+        @media (max-width: 600px) {
+            .hero-card {
+                padding: 28px 18px;
+            }
+            .profile-wrapper {
+                width: 150px;
+                height: 150px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .counter-badge {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            .letter-card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- เมฆตกแต่งเบื้องหลัง -->
-    <div class="cloud" style="width: 100px; height: 35px; top: 10%; animation-duration: 18s; opacity: 0.5;"></div>
-    <div class="cloud" style="width: 140px; height: 45px; top: 40%; animation-duration: 25s; opacity: 0.4;"></div>
-    <div class="cloud" style="width: 80px; height: 30px; top: 75%; animation-duration: 15s; opacity: 0.6;"></div>
+    <!-- Dynamic Floating Hearts Container -->
+    <div class="bg-hearts" id="bgHearts"></div>
 
-    <div class="container" id="card">
-        <div class="mascot" id="mascot">🥺</div>
-        <h1>เอิร์นครับ... นั้มขอโทษนะ</h1>
-        <div class="message-box">
-            <p id="text">นั้มสำนึกผิดแล้วจริงๆ น้า 🙇‍♂️<br>อย่าโกรธคนน่ารักคนนี้เลยนะเอิร์น ดีกันน้า 💙</p>
+    <div class="container">
+        
+        <!-- 1. Hero Section Header -->
+        <div class="hero-card">
+            <div class="profile-wrapper">
+                <!-- ใส่รูปคู่หลักของคุณตรงนี้ -->
+                <img src="Pic.jpg" alt="Our Main Memory" class="profile-img">
+                <div class="beating-heart-badge">💖</div>
+            </div>
+            
+            <h1>ทำเว็บ มาบอกรัก! ❤️</h1>
+            <p class="subtitle">ขอบคุณสำหรับทุกๆ รอยยิ้ม และความทรงจำแสนพิเศษที่มีให้กัน จะเชื่อฟังเมียอย่างดีเลยครับ🫡</p>
+            
+            <!-- Dynamic Anniversary Counter -->
+            <div class="counter-badge">
+                <span id="counterLabel">คบกันมาแล้ว</span>
+                <span id="daysCounter">0</span>
+                <span id="counterUnit">วัน</span> 🥰
+            </div>
         </div>
-        <div class="btn-group" id="btnGroup">
-            <button id="yesBtn" onclick="acceptApology()">ดีกันก็ได้! 💙</button>
-            <button id="noBtn" ontouchstart="moveButtonMobile(event)" onclick="moveButtonMobile(event)">ยังโกรธอยู่! 😤</button>
+
+        <!-- 2. Music Player Box -->
+        <div class="music-box">
+            <div class="music-info">
+                <div class="music-icon">🎵</div>
+                <div class="music-text">
+                    <h4>เพลงของเรา 💕</h4>
+                    <p>กดเพื่อเปิด/ปิดเพลงบรรยากาศหวานๆ</p>
+                </div>
+            </div>
+            <button class="music-btn" id="musicToggle" onclick="toggleAudio()">▶️</button>
+            <!-- ใส่ไฟล์เพลงของคุณตรงนี้ (สามารถเปลี่ยนเป็นชื่อไฟล์ เช่น song.mp3) -->
+            <audio id="bgMusic" loop>
+                <source src="song.mp3" type="audio/mpeg">
+            </audio>
         </div>
+
+        <!-- 3. Photo Gallery Section (10 รูป) -->
+        <h2 class="section-title">📸 10 Moments of Us</h2>
+        <div class="gallery-grid">
+            <!-- รูปที่ 1 -->
+            <div class="gallery-card" onclick="openLightbox('pic1.jpg')">
+                <img src="pic1.jpg" alt="Memory 1">
+                <div class="gallery-tag">#Memory 1</div>
+            </div>
+            <!-- รูปที่ 2 -->
+            <div class="gallery-card" onclick="openLightbox('pic2.jpg')">
+                <img src="pic2.jpg" alt="Memory 2">
+                <div class="gallery-tag">#Memory 2</div>
+            </div>
+            <!-- รูปที่ 3 -->
+            <div class="gallery-card" onclick="openLightbox('pic3.jpg')">
+                <img src="pic3.jpg" alt="Memory 3">
+                <div class="gallery-tag">#Memory 3</div>
+            </div>
+            <!-- รูปที่ 4 -->
+            <div class="gallery-card" onclick="openLightbox('pic4.jpg')">
+                <img src="pic4.jpg" alt="Memory 4">
+                <div class="gallery-tag">#Memory 4</div>
+            </div>
+            <!-- รูปที่ 5 -->
+            <div class="gallery-card" onclick="openLightbox('pic5.jpg')">
+                <img src="pic5.jpg" alt="Memory 5">
+                <div class="gallery-tag">#Memory 5</div>
+            </div>
+            <!-- รูปที่ 6 -->
+            <div class="gallery-card" onclick="openLightbox('pic6.jpg')">
+                <img src="pic6.jpg" alt="Memory 6">
+                <div class="gallery-tag">#Memory 6</div>
+            </div>
+            <!-- รูปที่ 7 -->
+            <div class="gallery-card" onclick="openLightbox('pic7.jpg')">
+                <img src="pic7.jpg" alt="Memory 7">
+                <div class="gallery-tag">#Memory 7</div>
+            </div>
+            <!-- รูปที่ 8 -->
+            <div class="gallery-card" onclick="openLightbox('pic8.jpg')">
+                <img src="pic8.jpg" alt="Memory 8">
+                <div class="gallery-tag">#Memory 8</div>
+            </div>
+            <!-- รูปที่ 9 -->
+            <div class="gallery-card" onclick="openLightbox('pic9.jpg')">
+                <img src="pic9.jpg" alt="Memory 9">
+                <div class="gallery-tag">#Memory 9</div>
+            </div>
+            <!-- รูปที่ 10 -->
+            <div class="gallery-card" onclick="openLightbox('pic10.jpg')">
+                <img src="pic10.jpg" alt="Memory 10">
+                <div class="gallery-tag">#Memory 10</div>
+            </div>
+        </div>
+
+        <!-- 4. Interactive Secret Letter -->
+        <div class="secret-box">
+            <button class="btn-toggle-secret" onclick="toggleSecret()">💌 คลิกเพื่อเปิดดูความในใจ</button>
+            <div class="secret-content" id="secretLetter">
+                <div class="letter-card">
+                    <p>ถึงเธอคนเก่งของเค้า... ❤️</p>
+                    <p>ตั้งแต่วันที่เราได้เริ่มเดินทางร่วมกัน ชีวิตของเค้าก็มีความสุขและเต็มไปด้วยรอยยิ้มขึ้นมากจริงๆ ขอบคุณที่คอยซัพพอร์ต คอยเอาใจใส่ และน่ารักกับเค้าเสมอมานะ</p>
+                    <p>ไม่ว่าวันข้างหน้าจะเป็นอย่างไร ขอให้เรารักและดูแลกันแบบนี้ไปนานๆ นะครับ เค้าตั้งใจทำหน้าเว็บนี้ขึ้นมาเพื่อเก็บความทรงจำของเรา รักเธอที่สุดเลยนะ! 💕✨</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+    <!-- Lightbox Modal -->
+    <div class="modal" id="imageModal" onclick="closeLightbox()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-img" id="modalImg" src="" alt="Expanded View">
+    </div>
+
+    <!-- JavaScript Logic -->
     <script>
-        // ข้อความง้อแบบสเต็ปน่ารักๆ
-        const messages = [
-            "นั้มรู้แล้วว่านั้มผิดจริง ๆ ง้อแล้วน้า 🥺",
-            "คืนดีกับนั้มเถอะนะ เอิร์นคนสวย/คนดีของนั้ม 💙",
-            "สัญญาว่าจะไม่ทำให้อิอ้วน/เอิร์นต้องงอนอีกแน้ววว",
-            "กดปุ่ม 'ดีกันก็ได้' เถอะน้า นั้มขอร้องล่ะ 🥹"
-        ];
-        let msgIndex = 0;
+        // 1. ระบบคำนวณวันครบรอบ (ตั้งค่าเป็น 11 เมษายน 2026)
+        const startDate = new Date('2026-04-11T00:00:00');
+        
+        function updateCounter() {
+            const now = new Date();
+            const diffTime = now - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-        function acceptApology() {
-            document.getElementById('mascot').innerHTML = '🥰🎉';
-            document.getElementById('card').style.background = 'rgba(255, 255, 255, 0.95)';
-            document.getElementById('card').innerHTML = `
-                <div class="mascot">🥰</div>
-                <h1>เย้! คืนดีกันแล้วนะ 💙</h1>
-                <div class="message-box" style="border-color: #38bdf8; background: #e0f2fe;">
-                    <p style="color: #0369a1; font-weight: 600;">ขอบคุณนะเอิร์นคนดี! นั้มรักเอิร์นที่สุดในโลกเลย จะเป็นเด็กดีแน่นอนครับ! ✨</p>
-                </div>
-                <button id="yesBtn" onclick="location.reload()">รักนั้มเพิ่มอีกจึ๋งนึง 💙</button>
-            `;
-            createBlueCelebration();
-        }
+            const counterLabel = document.getElementById('counterLabel');
+            const counterElement = document.getElementById('daysCounter');
+            const counterUnit = document.getElementById('counterUnit');
 
-        // ปุ่มหนีสำหรับมือถือ (รองรับทั้งแตะจอและคลิก)
-        function moveButtonMobile(e) {
-            e.preventDefault();
-            const noBtn = document.getElementById('noBtn');
-            
-            // เปลี่ยนข้อความเรื่อยๆ ทุกครั้งที่พยายามกดปุ่มปฏิเสธ
-            if (msgIndex < messages.length) {
-                document.getElementById('text').innerHTML = messages[msgIndex];
-                msgIndex++;
+            if (diffDays < 0) {
+                // กรณียังไม่ถึง 11 เมษายน
+                counterLabel.innerText = "นับถอยหลังอีก";
+                counterElement.innerText = Math.abs(diffDays);
+                counterUnit.innerText = "วันจะถึงวันครบรอบ";
+            } else if (diffDays === 0) {
+                // ตรงกับวันครบรอบพอดี
+                counterLabel.innerText = "วันนี้วันครบรอบ!";
+                counterElement.innerText = "🎉";
+                counterUnit.innerText = "วันพิเศษของเรา";
+            } else {
+                // เลยวันครบรอบมาแล้ว
+                counterLabel.innerText = "คบกันมาแล้ว";
+                counterElement.innerText = diffDays;
+                counterUnit.innerText = "วัน";
             }
-
-            // คำนวณตำแหน่งสุ่มให้อยู่ในหน้าจอมือถือ
-            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
-            const maxY = 120; // ขยับขึ้นลงในโซนปุ่ม
-            
-            const randomX = (Math.random() - 0.5) * maxX;
-            const randomY = (Math.random() - 0.5) * maxY;
-
-            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
         }
+        updateCounter();
 
-        // สร้างเอฟเฟกต์หัวใจสีฟ้าและดาวลอยตอนง้อสำเร็จ
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble-effect');
-            const icons = ['💙', '✨', '💧', '☁️', '🩵'];
-            bubble.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-            bubble.style.left = Math.random() * 100 + 'vw';
-            bubble.style.bottom = '-30px';
-            bubble.style.fontSize = (Math.random() * 16 + 16) + 'px';
-            document.body.appendChild(bubble);
+        // 2. ระบบสร้างหัวใจลอย Background
+        const heartContainer = document.getElementById('bgHearts');
+        const heartIcons = ['❤️', '💖', '🌸', '✨', '💕', '🌷'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 12 + 16) + 'px';
+            
+            heartContainer.appendChild(heart);
 
             setTimeout(() => {
-                bubble.remove();
-            }, 3500);
+                heart.remove();
+            }, 8000);
         }
 
-        function createBlueCelebration() {
-            setInterval(createBubble, 200);
+        setInterval(createHeart, 450);
+
+        // 3. ระบบเปิด/ปิด จดหมายลับ
+        function toggleSecret() {
+            const letter = document.getElementById('secretLetter');
+            letter.classList.toggle('show');
+        }
+
+        // 4. ระบบเครื่องเล่นเพลง (Audio Toggle)
+        function toggleAudio() {
+            const audio = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicToggle');
+            
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = '⏸️';
+            } else {
+                audio.pause();
+                btn.innerText = '▶️';
+            }
+        }
+
+        // 5. ระบบ Lightbox (คลิกขยายรูปดูแบบเต็มจอ)
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = imgSrc;
+            modal.classList.add('show');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('show');
         }
     </script>
 </body>
